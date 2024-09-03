@@ -1,0 +1,18 @@
+{
+  "name": "crawl-transaction",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "crawl": "ts-node crawl.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@ethersproject/providers": "^5.7.2",
+    "ethers": "^5.7.2",
+    "ts-node": "^10.9.2"
+  }
+}
