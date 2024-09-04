@@ -19,8 +19,11 @@ async function main() {
 
   // const start_block = 20657450;
   // const start_block = 20657484;
-  const start_block = 20657629;
-  const end_block =   20660000;
+  // const start_block = 20657629;
+  // const start_block = 20658429;
+  // const end_block =   20660000;
+  const start_block = 0;
+  const end_block = 200;
 
   // const end_block =   20667500;
   for (let i = start_block; i < end_block; i += 100) {
@@ -33,6 +36,8 @@ async function runBlocks(chainId: number, startBlock: number, endBlock: number) 
 
   let providerRandom: JsonRpcProvider;
   let fd = openSync(__dirname + `/result/test_crawl_${startBlock}_${endBlock - 1}.json`, 'w')
+  let fdError = openSync(__dirname + `/result/report_${startBlock}_${endBlock - 1}.txt`, 'w')
+
   let prev_no = -1;
   for (let i = startBlock; i < endBlock; i++) {
     let attempts = 0;
@@ -54,11 +59,11 @@ async function runBlocks(chainId: number, startBlock: number, endBlock: number) 
       }
       catch (error) {
         attempts++;
-        let fd = openSync(__dirname + `/result/report_${startBlock}_${endBlock - 1}.txt`, 'w')
         appendFileSync(__dirname + `/result/report_${startBlock}_${endBlock - 1}.txt`, `Failed after ${attempts} attempts for block ${i}` + '\n')
         console.log("Custom Error PHUDVQ ", error)
         if (attempts == maxAttempts) {
-          appendFileSync(__dirname + `/result/report_${startBlock}_${endBlock - 1}.txt`, `Failed after ${maxAttempts} attempts for block ${i}` + '\n' + error + '\n')
+          appendFileSync(__dirname + `/result/report_${startBlock}_${endBlock - 1}.txt`, `Fatal Error: Failed after ${maxAttempts} attempts for block ${i}` + '\n' + '\t' +  error + '\n')
+          appendFileSync(__dirname + `/result/report_${startBlock}_${endBlock - 1}.txt`, `-------------Block ${i}------------` + '\n')
         }
       }
     }
