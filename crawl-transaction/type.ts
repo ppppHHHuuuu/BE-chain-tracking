@@ -50,3 +50,21 @@ export type LogReturn = {
   logIndex: number;
   blockHash: string;
 }
+
+export type Account = {
+  tag: AccountTag,
+  type: AccountType,
+}
+export enum AccountType {
+  miner,
+  EOA_active,
+  EOA_inactive,
+  EOA_exchange,
+  contract_exchange,
+  contract_normal,
+  router,
+}
+
+export enum AccountTag {
+
+}
